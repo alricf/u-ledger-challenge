@@ -5,21 +5,32 @@ import Input from '../components/Input';
 
 export default function create() {
 
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [dob, setDob] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [vacStat, setVacStat] = useState('');
-  const [doctor, setDoctor] = useState('');
-  const [healthCardNum, setHealthCardNum] = useState('');
+  // Hooks
+  const [formMedData, setFormMedData] = useState({
+    name: "",
+    age: "",
+    dob: "",
+    weight: "",
+    height: "",
+    vacStat: "",
+    doctor: "",
+    healthCardNum: "",
+  });
+
+  // Helper Functions
+  const onChange = (e) => {
+    e.preventDefault();
+    setFormMedData(prev => ({ ...prev, [`${e.target.name}`]: e.target.value }));
+    // console.log(formMedData)
+  };
 
   const handleClick = (e) => {
-    e.preventDefault()
-    axios.get(`http://localhost:3000/api/create`)
+    e.preventDefault();
+    // console.log(formMedData);
+    axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
         console.log(res.data);
-      });
+      })
   };
 
   return (
@@ -32,57 +43,65 @@ export default function create() {
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name='name'
+          value={formMedData.name}
+          onChange={onChange}
           text='Name'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
+          name='age'
+          value={formMedData.age}
+          onChange={onChange}
           text='Age'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={dob}
-          onChange={(e) => setDob(e.target.value)}
+          name='dob'
+          value={formMedData.dob}
+          onChange={onChange}
           text='Date of Birth'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
+          name='weight'
+          value={formMedData.weight}
+          onChange={onChange}
           text='Weight'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
+          name='height'
+          value={formMedData.height}
+          onChange={onChange}
           text='Height'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={vacStat}
-          onChange={(e) => setVacStat(e.target.value)}
+          name='vacStat'
+          value={formMedData.vacStat}
+          onChange={onChange}
           text='Vaccination Status'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={doctor}
-          onChange={(e) => setDoctor(e.target.value)}
+          name='doctor'
+          value={formMedData.doctor}
+          onChange={onChange}
           text='Doctor'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={healthCardNum}
-          onChange={(e) => setHealthCardNum(e.target.value)}
+          name='healthCardNum'
+          value={formMedData.healthCardNum}
+          onChange={onChange}
           text='Healtch Card #'
         />
         <button className='flex justify-center align-center bg-yellow-500 border-4 border-black w-40 mb-5 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={handleClick} type='submit'>
