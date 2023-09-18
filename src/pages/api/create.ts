@@ -20,13 +20,13 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
 
     try {
         const txnSession = new ULedgerTransactionSessionV2({
-        nodeUrl: process.env.NODEURL,
-        atomicClockUrl: process.env.ATOMICCLOCKURL,
-        nodeId: process.env.NODEID
+        nodeUrl: process.env.NODE_URL,
+        atomicClockUrl: process.env.ATOMIC_CLOCK_URL,
+        nodeId: process.env.NODE_ID
         });
 
         const txnInputData: ULedgerTransactionInputV2 = {
-        blockchainId: process.env.BLOCKCHAINID,
+        blockchainId: process.env.BLOCKCHAIN_ID,
         to: my_address,
         from: my_address,
         payload: {input: "..."},
