@@ -1,34 +1,34 @@
 import Link from "next/link";
 
-export default function NavBar({ patient }) {
+export default function NavBar({ readOnly }) {
   return (
     <>
-      {patient ?
-        <ul>
-          <li>
+      {readOnly ?
+        <ul className='flex justify-center items-start mt-5'>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
             <Link href='/read'>
               READ
             </Link>
           </li>
         </ul>
         :
-        <ul>
-          <li>
+        <ul className='flex justify-center items-start gap-10 mt-5'>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
             <Link href='/create'>
               CREATE
             </Link>
           </li>
-          <li>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
             <Link href='/read'>
               READ
             </Link>
           </li>
-          <li>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
             <Link href='/update'>
               UPDATE
             </Link>
           </li >
-          <li>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
             <Link href='/delete'>
               DELETE
             </Link>
