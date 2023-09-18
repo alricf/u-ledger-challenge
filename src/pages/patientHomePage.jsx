@@ -2,10 +2,10 @@ import NavBar from '../components/NavBar';
 
 export default function patientHomePage() {
   return (
-    <>
+    <div className='flex flex-col'>
       <NavBar
-        patient={true}
+        readOnly={true}
       />
-    </>
+    </div>
   );
 }
