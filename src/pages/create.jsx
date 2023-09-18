@@ -17,6 +17,8 @@ export default function create() {
     healthCardNum: "",
   });
 
+  const [newTxnData, setNewTxnData] = useState({});
+
   // Helper Functions
   const onChange = (e) => {
     e.preventDefault();
@@ -29,17 +31,19 @@ export default function create() {
     // console.log(formMedData);
     axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
-        console.log(res.data);
-      })
+        // console.log(res.data.txn);
+        setNewTxnData(res.data.txn);
+      });
   };
 
   return (
-    <div className={'flex flex-col bg-yellow-300 h-screen'}>
+    <div className={'flex flex-col bg-yellow-300 h-100'}>
       <NavBar />
+      {/* Form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
-        <h1 className='text-black font-2xl font-bold mt-5'>
+        <h2 className='text-black font-2xl font-bold mt-5'>
           INSERT NEW MEDICAL INFORMATION
-        </h1>
+        </h2>
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
@@ -108,6 +112,17 @@ export default function create() {
           SUBMIT
         </button>
       </form>
+      {/*Display Transaction ID*/}
+      {Object.keys(newTxnData).length > 0 &&
+        <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
+          <h2 className='text-black font-2xl font-bold my-5 text-center'>
+            TRANSACTION ID
+          </h2>
+          <label className={'text-lg text-black mb-10'}>
+            {newTxnData.transaction_id}
+          </label>
+        </div>
+      }
     </div>
   );
 }
