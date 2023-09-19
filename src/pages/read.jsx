@@ -19,7 +19,7 @@ export default function read() {
   const handleClick = (e) => {
     e.preventDefault();
     // console.log(formMedData);
-    axios.post(`http://localhost:3000/api/read`, transactionId)
+    axios.post(`http://localhost:3000/api/read`, {transactionId})
       .then(res => {
         console.log(res.data.txPayload);
         setPayloadData(res.data.txPayload);
