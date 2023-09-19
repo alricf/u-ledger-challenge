@@ -21,7 +21,7 @@ export default async function readTransactionHandler(req: NextApiRequest, res: N
     console.log("Retreived transaction by ID:\n", txPayload, typeof txPayload);
     res.status(200).json({ txPayload });
   } catch (error) {
-    res.status(500).json({ error });
-    console.error("Fail ", error);
+    res.status(500).json({ error: "Error -> Enter a valid Transaction ID" });
+    console.error("Fail ->", error);
   }
 }
