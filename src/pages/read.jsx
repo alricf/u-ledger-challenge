@@ -8,6 +8,7 @@ export default function read() {
   // Hooks
   const [transactionId, setTransactionId] = useState('');
   const [payloadData, setPayloadData] = useState({});
+  const [errorMsg, setErrorMsg] = useState('');
 
   // Helper Functions
   const onChange = (e) => {
@@ -21,12 +22,18 @@ export default function read() {
     // console.log(formMedData);
     axios.post(`http://localhost:3000/api/read`, {transactionId})
       .then(res => {
-        console.log(res.data.txPayload);
+        setErrorMsg('')
+        // console.log(res.data.txPayload);
         setPayloadData(res.data.txPayload);
-      });
+      })
+      .catch(error => {
+        setPayloadData({})
+        // console.log(error.response.data.error)
+        setErrorMsg(error.response.data.error)
+      })
   };
 
-  console.log(payloadData);
+  // console.log(payloadData);
 
   return (
     <div className='flex flex-col bg-yellow-300 h-screen w-full'>
@@ -44,6 +51,11 @@ export default function read() {
           SUBMIT
         </button>
       </form>
+      {errorMsg && 
+        <div className='flex flex-col justify-center items-center bg-red-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
+          {errorMsg}
+        </div>
+      }
       {Object.keys(payloadData).length > 0 &&
         <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
