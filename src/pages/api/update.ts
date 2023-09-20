@@ -1,77 +1,35 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-const { ULedgerTransactionInputV2, ULedgerTransactionSessionV2, ULedgerBMSSession } = require('@uledger/uledger-sdk');
-import crypto from 'crypto';
 
-const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
-    modulusLength: 2048,
-    publicKeyEncoding: {
-        type: 'spki',
-        format: 'pem',
-    },
-    privateKeyEncoding: {
-        type: 'pkcs8',
-        format: 'pem',
-    },
-});
 
-export default async function updateTransactionHandler(req: NextApiRequest, res: NextApiResponse) {
+import { ULedgerBMSSession } from "@uledger/uledger-sdk";
 
-    const session = new ULedgerBMSSession({
-        url: "https://uledger.net/api/v1/bms"
-    });  
-    
-    const trim = false;
+async function userHistory() {
 
-    const transactionId = "1df554c002488dec1e5e1683b4def8989e99f568d320b0f7b5f3abee934ff1ad";
+  const session = new ULedgerBMSSession({
+    url: "https://uledger.net/api/v1/bms"
+  });
+
+  // Search terms - which blockchain and which user are we looking for?
+  const blockchainId = "f78b4aeb3979871111ae2984de352dee0a3e0da01c1236274dfbfb95e2ee05e3";
+  const userIdKeyword = "healthCareProviderAddress";
+  // Pagination parameters 
+  const limit = 10;
+  const offset = 0;
+  const sort = true;
+  // Should we exclude the transactions' payloads?
+  const trim = false;
+
+  ////////////////////////
+  const publicBool = true;
+  ////////////////////////
   
-    const bmsTxn = await session.searchTransactionById(transactionId, trim);
-    const JSpayload = eval('(' + bmsTxn.payload + ')');
-    
-    console.log("JSpayload: ", JSpayload); 
-  
-    // JSpayload[key] = val;
-  
-    console.log("\nupdated payload: ", JSpayload, "\ntypeof JSpayload: ", (typeof JSpayload));
-    
+  // Send the request
+  const history = await session.userHistory(blockchainId, userIdKeyword, limit, offset, sort, trim, publicBool);
+  // Log the result
+  console.log(`Transactions FROM userIds matching '${userIdKeyword}':`);
+  console.log(history.from);
+  console.log(`\nTransactions TO userIds matching '${userIdKeyword}':`);
+  console.log(history.to);
 
-    const my_address = sha256Hash(publicKey);
-
-    try {
-        const txnSession = new ULedgerTransactionSessionV2({
-        nodeUrl: process.env.NODE_URL,
-        atomicClockUrl: process.env.ATOMIC_CLOCK_URL,
-        nodeId: process.env.NODE_ID
-        });
-
-        const txnInputData: ULedgerTransactionInputV2 = {
-        blockchainId: process.env.BLOCKCHAIN_ID,
-        to: my_address,
-        from: my_address,
-        payload: {input: "..."},
-        payloadType: "DATA",
-        senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"
-        };
-
-        const inputString = JSON.stringify(txnInputData.payload);
-        const hash = sha256Hash(inputString);
-        console.log('Keccak (SHA-3) Hash of Transaction Payload:', hash);
-
-        const sign = crypto.createSign('RSA-SHA256');
-        sign.update(hash);
-        const signature = sign.sign(privateKey, 'base64');
-        txnInputData.senderSignature = sha256Hash(signature);
-
-        const txn = await txnSession.createTransaction(txnInputData);
-        console.log('->', typeof txn)
-        res.status(200).json({ txn });
-    } catch (error) {
-        res.status(500).json({ error });
-        console.error("Fail ", error);
-    }
 }
 
-function sha256Hash(data: string): string {
-    const hash = crypto.createHash('sha256');
-    hash.update(data);
-    return hash.digest('hex');
-}
+userHistory();
