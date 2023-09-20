@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
+import GenPDF from '../components/GenPDF';
 
 export default function read() {
 
@@ -83,6 +84,11 @@ export default function read() {
               `Health Card #: ${payloadData.healthCardNum}`
             }
             <br />
+            <GenPDF 
+              data={payloadData}
+              transactionId={transactionId}
+              type='readMedicalRecord'
+            />
           </label>
         </div>
       }
