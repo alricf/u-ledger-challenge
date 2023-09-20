@@ -24,7 +24,7 @@ export default function NavBar({ readOnly }) {
             </Link>
           </li>
           <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
-            <Link href='/update'>
+            <Link href='/update-by'>
               UPDATE
             </Link>
           </li >
