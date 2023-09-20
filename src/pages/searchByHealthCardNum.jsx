@@ -9,7 +9,7 @@ export default function create() {
 
   const handleClick = (e) => {
     e.preventDefault()
-    axios.get(`http://localhost:3000/api/`)
+    axios.get(`http://localhost:3000/api/searchByHealthCardName`)
       .then(res => {
         console.log(res.data);
       });
