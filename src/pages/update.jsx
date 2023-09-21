@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 
-export default function create() {
+export default function update() {
 
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -16,7 +16,7 @@ export default function create() {
 
   const handleClick = (e) => {
     e.preventDefault()
-    axios.get(`http://localhost:3000/api/create`)
+    axios.get(`http://localhost:3000/api/update`)
       .then(res => {
         console.log(res.data);
       });

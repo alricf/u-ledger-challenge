@@ -1,6 +1,5 @@
 
-
-import { ULedgerBMSSession } from "@uledger/uledger-sdk";
+const { ULedgerBMSSession } = require("@uledger/uledger-sdk");
 
 async function userHistory() {
 
@@ -8,7 +7,7 @@ async function userHistory() {
     url: "https://uledger.net/api/v1/bms"
   });
 
-  // Search terms - which blockchain and which user are we looking for?
+  // Search terms 
   const blockchainId = "f78b4aeb3979871111ae2984de352dee0a3e0da01c1236274dfbfb95e2ee05e3";
   const userIdKeyword = "healthCareProviderAddress";
   // Pagination parameters 
@@ -25,11 +24,23 @@ async function userHistory() {
   // Send the request
   const history = await session.userHistory(blockchainId, userIdKeyword, limit, offset, sort, trim, publicBool);
   // Log the result
-  console.log(`Transactions FROM userIds matching '${userIdKeyword}':`);
-  console.log(history.from);
-  console.log(`\nTransactions TO userIds matching '${userIdKeyword}':`);
-  console.log(history.to);
 
+  //console.log(`Transactions FROM userIds matching '${userIdKeyword}':`);
+  // console.log(history.from.payload, "\ntypeof history.from: ", (typeof history.from.payload));
+  // console.log(`\nTransactions TO userIds matching '${userIdKeyword}':`);
+  // console.log(history.to);
+
+  const historyFrom = history.from.payload;
+  //console.log("history from payload: ", historyFrom);
+
+  const historyFromPayload = [];
+
+  for (let obj in historyFrom) {
+    console.log(obj);
+    historyFromPayload.push(obj);
+  }
+
+  //console.log(historyFromPayload);
 }
 
 userHistory();
