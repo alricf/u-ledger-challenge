@@ -31,16 +31,18 @@ async function userHistory() {
   // console.log(history.to);
 
   const historyFrom = history.from.payload;
-  //console.log("history from payload: ", historyFrom);
 
-  const historyFromPayload = [];
+  //console.log(historyFrom);
+  // for (let i = 0; i < historyFrom.length; i++) {
+  //   console.log(historyFrom[i])
+  // };
 
-  for (let obj in historyFrom) {
-    console.log(obj);
-    historyFromPayload.push(obj);
-  }
+  const toAddress = "smartContractAddress";
 
-  //console.log(historyFromPayload);
+  const txnsForClient = historyFrom.filter((txn: { toAddress: string; }) => txn.toAddress === toAddress);
+
+  console.log(txnsForClient);
+  
 }
 
 userHistory();
