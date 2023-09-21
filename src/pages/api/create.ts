@@ -15,7 +15,8 @@ const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
 });
 
 export default async function createTransactionHandler(req: NextApiRequest, res: NextApiResponse) {
-
+  // console.log(req.body)
+  
     const my_address = sha256Hash(publicKey);
 
     try {
@@ -29,7 +30,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
         blockchainId: process.env.BLOCKCHAIN_ID,
         to: my_address,
         from: my_address,
-        payload: {input: "..."},
+        payload: req.body,
         payloadType: "DATA",
         senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"
         };
@@ -44,7 +45,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
         txnInputData.senderSignature = sha256Hash(signature);
 
         const txn = await txnSession.createTransaction(txnInputData);
-        console.log('->', typeof txn)
+
         res.status(200).json({ txn });
     } catch (error) {
         res.status(500).json({ error });
