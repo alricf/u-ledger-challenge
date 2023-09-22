@@ -19,7 +19,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
   let payload = req.body;
   const uuid = crypto.randomUUID();
   // console.log(uuid);
-  payload['patienId'] = uuid;
+  payload['patientId'] = uuid;
   // console.log(payload);
   
       const my_address = sha256Hash(publicKey);

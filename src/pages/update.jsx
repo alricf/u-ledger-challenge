@@ -5,21 +5,31 @@ import Input from '../components/Input';
 
 export default function update() {
 
-  const [transactionId, setTransactionId] = useState('');
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [dob, setDob] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [vacStat, setVacStat] = useState('');
-  const [doctor, setDoctor] = useState('');
-  const [healthCardNum, setHealthCardNum] = useState('');
+  const [updateFormData, setUpdateFormData] = useState({
+    transactionId: "",
+    name: "",
+    age: "",
+    dob: "",
+    weight: "",
+    height: "",
+    vacStat: "",
+    doctor: "",
+    healthCardNum: "",
+  });
+
+  const [newTxnData, setNewTxnData] = useState({});
+
+  const onChange = (e) => {
+    e.preventDefault();
+    setUpdateFormData(prev => ({ ...prev, [`${e.target.name}`]: e.target.value }));
+  };
 
   const handleClick = (e) => {
     e.preventDefault()
-    axios.get(`http://localhost:3000/api/update`)
+    axios.post(`http://localhost:3000/api/update`, updateFormData)
       .then(res => {
         console.log(res.data);
+        setNewTxnData(res.data.txn);
       });
   };
 
@@ -28,75 +38,94 @@ export default function update() {
       <NavBar />
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
-          INSERT NEW MEDICAL INFORMATION
+          INSERT UPDATED MEDICAL INFORMATION
         </h1>
         <Input 
           className='text-center border-black border-4 text-black'
           type='text'
-          value={transactionId}
-          onChange={(e) => setTransactionId(e.target.value)}
+          name='transactionId'
+          value={updateFormData.transactionId}
+          onChange={onChange}
           text='Transaction ID'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name='name'
+          value={updateFormData.name}
+          onChange={onChange}
           text='Name'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
+          name='age'
+          value={updateFormData.age}
+          onChange={onChange}
           text='Age'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={dob}
-          onChange={(e) => setDob(e.target.value)}
+          name='dob'
+          value={updateFormData.dob}
+          onChange={onChange}
           text='Date of Birth'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
+          name='weight'
+          value={updateFormData.weight}
+          onChange={onChange}
           text='Weight'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
+          name='height'
+          value={updateFormData.height}
+          onChange={onChange}
           text='Height'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={vacStat}
-          onChange={(e) => setVacStat(e.target.value)}
+          name='vacStat'
+          value={updateFormData.vacStat}
+          onChange={onChange}
           text='Vaccination Status'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={doctor}
-          onChange={(e) => setDoctor(e.target.value)}
+          name='doctor'
+          value={updateFormData.doctor}
+          onChange={onChange}
           text='Doctor'
         />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
-          value={healthCardNum}
-          onChange={(e) => setHealthCardNum(e.target.value)}
+          name='healthCardNum'
+          value={updateFormData.healthCardNum}
+          onChange={onChange}
           text='Healtch Card #'
         />
         <button className='flex justify-center align-center bg-yellow-500 border-4 border-black w-40 mb-5 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={handleClick} type='submit'>
           SUBMIT
         </button>
       </form>
+      {Object.keys(newTxnData).length > 0 &&
+        <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
+          <h2 className='text-black font-2xl font-bold my-5 text-center'>
+            TRANSACTION ID
+          </h2>
+          <label className={'text-lg text-black mb-10'}>
+            {newTxnData.transaction_id}
+          </label>
+        </div>
+      }
     </div>
   );
 }
