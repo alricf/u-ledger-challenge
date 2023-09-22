@@ -1,4 +1,4 @@
-export default function Input({ name, type, value, onChange, text, className }) {
+export default function Input({ name, type, value, onChange, text, className, max }) {
   return (
     <>
       <input
@@ -8,6 +8,7 @@ export default function Input({ name, type, value, onChange, text, className }) 
         value={value}
         onChange={onChange}
         placeholder={text}
+        max={max}
         required
       />
     </>
