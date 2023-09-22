@@ -5,6 +5,7 @@ import Input from '../components/Input';
 
 export default function update() {
 
+  const [transactionId, setTransactionId] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [dob, setDob] = useState('');
@@ -29,6 +30,13 @@ export default function update() {
         <h1 className='text-black font-2xl font-bold mt-5'>
           INSERT NEW MEDICAL INFORMATION
         </h1>
+        <Input 
+          className='text-center border-black border-4 text-black'
+          type='text'
+          value={transactionId}
+          onChange={(e) => setTransactionId(e.target.value)}
+          text='Transaction ID'
+        />
         <Input
           className='text-center border-black border-4 text-black'
           type='text'
