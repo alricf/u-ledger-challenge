@@ -21,8 +21,7 @@ export default function deleteUser() {
     axios.post(`http://localhost:3000/api/delete`, {transactionId})
       .then(res => {
         setErrorMsg('')
-        console.log(res.data.txn);
-        setPayloadData(res.data.txn);
+        setPayloadData(res.data.txnInfo);
       })
       .catch(error => {
         setPayloadData({})
@@ -63,6 +62,12 @@ export default function deleteUser() {
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
             MEDICAL RECORD
           </h2>
+          <label className='text-lg text-black mb-10 text-center'>
+            {payloadData.patientId && `PATIENT ID: ${payloadData.patientId}`}
+            <br />
+            {payloadData.status && `STATUS: ${payloadData.status}`}
+            <br />
+          </label>
         </div>
       }
     </div>

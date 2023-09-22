@@ -67,9 +67,15 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
         txnInputData.senderSignature = sha256Hash(signature);
   
         const txn = await txnSession.createTransaction(txnInputData);
-        console.log(txn);
+        const txnInfo = {
+          transaction_id: txn.transaction_id,
+          patientId: patientId,
+          status: "inactive",
+        };
 
-        res.status(200).json({ txn });
+        console.log("txnInfo: ", txnInfo, "\ntypeof transaction_id: ", (typeof txnInfo.transaction_id), "\ntypeof patientId: ", (typeof txnInfo.patientId), "\ntypeof status: ", (typeof txnInfo.status), "\ntype of txnInfo: ", (typeof txnInfo));
+
+        res.status(200).json({ txnInfo });
     } catch (error) {
         res.status(500).json({ error });
         console.error("Fail ", error);
