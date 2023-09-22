@@ -27,8 +27,11 @@ export default function create() {
   };
 
   const handleClick = (e) => {
-    e.preventDefault();
     // console.log(formMedData);
+
+    // Error Handling
+    if (!formMedData.name || !formMedData.age || !formMedData.dob || !formMedData.weight || !formMedData.height || !formMedData.vacStat || !formMedData.doctor || !formMedData.healthCardNum) return;
+    
     axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
         // console.log(res.data.txn);
