@@ -19,6 +19,8 @@ export default function create() {
 
   const [newTxnData, setNewTxnData] = useState({});
 
+  const currentDate = new Date().toISOString().split('T')[0];
+
   // Helper Functions
   const onChange = (e) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ export default function create() {
 
     // Error Handling
     if (!formMedData.name || !formMedData.age || !formMedData.dob || !formMedData.weight || !formMedData.height || !formMedData.vacStat || !formMedData.doctor || !formMedData.healthCardNum) return;
-    
+
     axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
         // console.log(res.data.txn);
@@ -65,11 +67,12 @@ export default function create() {
         />
         <Input
           className='text-center border-black border-4 text-black'
-          type='text'
+          type='date'
           name='dob'
           value={formMedData.dob}
           onChange={onChange}
           text='Date of Birth'
+          max={currentDate}
         />
         <Input
           className='text-center border-black border-4 text-black'
