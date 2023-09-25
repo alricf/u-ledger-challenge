@@ -73,8 +73,6 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
           status: "inactive",
         };
 
-        console.log("txnInfo: ", txnInfo, "\ntypeof transaction_id: ", (typeof txnInfo.transaction_id), "\ntypeof patientId: ", (typeof txnInfo.patientId), "\ntypeof status: ", (typeof txnInfo.status), "\ntype of txnInfo: ", (typeof txnInfo));
-
         res.status(200).json({ txnInfo });
     } catch (error) {
         res.status(500).json({ error });
