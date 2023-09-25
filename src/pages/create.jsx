@@ -30,7 +30,7 @@ export default function create() {
 
   const handleClick = (e) => {
     // console.log(formMedData);
-
+    e.preventDefault();
     // Error Handling
     if (!formMedData.name || !formMedData.age || !formMedData.dob || !formMedData.weight || !formMedData.height || !formMedData.vacStat || !formMedData.doctor || !formMedData.healthCardNum) return;
 
@@ -42,7 +42,7 @@ export default function create() {
   };
 
   return (
-    <div className={'flex flex-col bg-yellow-300 h-100'}>
+    <div className='flex flex-col bg-yellow-300 h-screen'>
       <NavBar />
       {/* Form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
@@ -50,7 +50,7 @@ export default function create() {
           INSERT NEW MEDICAL INFORMATION
         </h2>
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='name'
           value={formMedData.name}
@@ -58,7 +58,7 @@ export default function create() {
           text='Name'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='age'
           value={formMedData.age}
@@ -66,7 +66,7 @@ export default function create() {
           text='Age'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='date'
           name='dob'
           value={formMedData.dob}
@@ -75,7 +75,7 @@ export default function create() {
           max={currentDate}
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='weight'
           value={formMedData.weight}
@@ -83,7 +83,7 @@ export default function create() {
           text='Weight'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='height'
           value={formMedData.height}
@@ -91,7 +91,7 @@ export default function create() {
           text='Height'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='vacStat'
           value={formMedData.vacStat}
@@ -99,7 +99,7 @@ export default function create() {
           text='Vaccination Status'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='doctor'
           value={formMedData.doctor}
@@ -107,14 +107,14 @@ export default function create() {
           text='Doctor'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='healthCardNum'
           value={formMedData.healthCardNum}
           onChange={onChange}
           text='Healtch Card #'
         />
-        <button className='flex justify-center align-center bg-yellow-500 border-4 border-black w-40 mb-5 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={handleClick} type='submit'>
+        <button className='flex justify-center align-center bg-yellow-500 border-4 border-black mb-5 text-black rounded-t-2xl rounded-b-2xl font-bold w-1/4' onClick={handleClick} type='submit'>
           SUBMIT
         </button>
       </form>
@@ -124,7 +124,7 @@ export default function create() {
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
             TRANSACTION ID
           </h2>
-          <label className={'text-lg text-black mb-10'}>
+          <label className='text-lg text-black mb-10'>
             {newTxnData.transaction_id}
           </label>
         </div>
