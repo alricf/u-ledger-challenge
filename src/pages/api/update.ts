@@ -20,6 +20,7 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
       url: "https://uledger.net/api/v1/bms"
     });
 
+    //get transaction from body
     const searchTxnId = req.body.transactionId;
 
     let payload = req.body;
@@ -27,13 +28,10 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
 
     // Search terms 
     const blockchainId = process.env.NODE_URL;
-    
-    
     const trim = false;
 
+    //transaction by id and obtain patient id for new payload
     const bmsTxn = await session.searchTransactionById(searchTxnId, trim);
-    //console.log("Retreived transaction by ID:\n", bmsTxn);
-    
     const bmsTxnPayload = eval('(' + bmsTxn.payload + ')');
     const patientId = bmsTxnPayload.patientId;
 
