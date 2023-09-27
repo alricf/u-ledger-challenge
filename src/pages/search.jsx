@@ -190,7 +190,7 @@ export default function Search() {
             <tbody>
               {
                 allSearchData.map((element) => {
-                  if (Object.values(element.payload).includes(searchTerm)) {
+                  if (Object.values(element.payload).includes(searchTerm) || element.transactionId === searchTerm) {
                     return (
                       <tr>
                         <td className='bg-white px-1 py-1 border-black border-2'>
