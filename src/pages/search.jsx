@@ -8,6 +8,7 @@ export default function Search() {
   const [all, setAll] = useState(true);
   const [searchButton, setSearchButton] = useState(false);
   const [allSearchData, setAllSearchData] = useState([]);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/search`)
@@ -25,11 +26,15 @@ export default function Search() {
   const onClick = (e) => {
     e.preventDefault();
     // console.log(e.target.name);
-    if (e.target.name === 'search') {
+    if (e.target.name === 'search' && searchTerm) {
+      setErrorMsg('');
       if (all) setAll(false);
       if (!searchButton) setSearchButton(true);
+    } else if ((e.target.name === 'search') && !searchTerm) {
+      setErrorMsg('Error -> Enter a valid search term');
     }
     if (e.target.name === 'allData') {
+      setErrorMsg('');
       if (!all) setAll(true);
       setAll(true);
       setSearchButton(false);
@@ -65,7 +70,12 @@ export default function Search() {
             ALL DATA
           </button>
         </form>
-        {(all && !searchButton && (allSearchData.length > 0)) &&
+        {errorMsg &&
+          <div className='flex flex-col justify-center items-center bg-red-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl w-full text-white'>
+            {errorMsg}
+          </div>
+        }
+        {(!errorMsg && all && !searchButton && (allSearchData.length > 0)) &&
           <table className='text-center table-auto'>
             <thead>
               <tr>
@@ -141,7 +151,7 @@ export default function Search() {
             </tbody>
           </table>
         }
-        {(!all && searchButton && (allSearchData.length > 0)) &&
+        {(!errorMsg && !all && searchButton && (allSearchData.length > 0)) &&
           <table>
             <thead>
               <tr>
