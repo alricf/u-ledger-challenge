@@ -72,7 +72,7 @@ export default function update() {
         />
         <Input
           className='text-center border-black border-4 text-black w-1/3'
-          type='text'
+          type='date'
           name='dob'
           value={updateFormData.dob}
           onChange={onChange}
