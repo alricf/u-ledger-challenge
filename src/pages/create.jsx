@@ -42,7 +42,7 @@ export default function create() {
   };
 
   return (
-    <div className='flex flex-col bg-yellow-300 h-screen'>
+    <div className='flex flex-col bg-yellow-300 h-screen w-full'>
       <NavBar />
       {/* Form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>

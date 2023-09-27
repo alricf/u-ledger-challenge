@@ -4,80 +4,38 @@ import buttonHooks from '../hooks/buttonHook';
 
 
 export default function NavBar({ readOnly }) {
-
-  // const [createActive, setCreateActive] = useState(false);
-  // const [readActive, setReadActive] = useState(false);
-  // const [updateActive, setUpdateActive] = useState(false);
-  // const [deleteActive, setDeleteActive] = useState(false);
-  // const [searchActive, setSearchActive] = useState(false);
-
   
   const createHandler = (e) => {
     e.preventDefault();
-    // setCreateActive(true);
-    // setReadActive(false);
-    // setUpdateActive(false);
-    // setDeleteActive(false);
-    // setSearchActive(false);
     localStorage.clear();
     localStorage.setItem('create', 'true')
-    //console.log(createActive);
   }
   
   const readHandler = (e) => {
     e.preventDefault()
-    // setCreateActive(false);
-    // setReadActive(true);
-    // setUpdateActive(false);
-    // setDeleteActive(false);
-    // setSearchActive(false);
     localStorage.clear();
     localStorage.setItem('read', 'true')
   }
   
   const updateHandler = (e) => {
     e.preventDefault()
-    // setCreateActive(false);
-    // setReadActive(false);
-    // setUpdateActive(true);
-    // setDeleteActive(false);
-    // setSearchActive(false);
     localStorage.clear();
     localStorage.setItem('update', 'true')
   }
   
   const deleteHandler = (e) => {
     e.preventDefault()
-    // setCreateActive(false);
-    // setReadActive(false);
-    // setUpdateActive(false);
-    // setDeleteActive(true);
-    // setSearchActive(false);
     localStorage.clear();
     localStorage.setItem('delete', 'true')
   }
   
   const searchHandler = (e) => {
     e.preventDefault()
-    // setCreateActive(false);
-    // setReadActive(false);
-    // setUpdateActive(false);
-    // setDeleteActive(false);
-    // setSearchActive(true);
     localStorage.clear();
     localStorage.setItem('search', 'true');
   }
   
   const { createActive, readActive, updateActive, deleteActive, searchActive } = buttonHooks();
-  // useEffect(() => {
-    //   setCreateActive(localStorage.getItem('create'));
-  //   setReadActive(localStorage.getItem('read'));
-  //   setUpdateActive(localStorage.getItem('update'));
-  //   setDeleteActive(localStorage.getItem('delete'));
-  //   setSearchActive(localStorage.getItem('search'));
-  // }, []);
-
-  console.log(createActive)
 
   return (
     <>
