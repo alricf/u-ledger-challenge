@@ -38,7 +38,7 @@ export default function Search() {
   };
 
   return (
-    <div className='flex flex-col items-center bg-yellow-500 text-black h-screen px-10'>
+    <div className='flex flex-col items-center bg-yellow-500 text-black h-screen px-2'>
       <NavBar />
       <div className='flex flex-col items-center my-10 py-10 bg-teal-500 gap-5 px-5 text-sm border-black border-4 rounded-t-2xl rounded-b-2xl max-w-full overflow-x-auto w-full h-full'>
         <form className='flex justify-center items-center gap-5 w-full'>
@@ -69,8 +69,11 @@ export default function Search() {
           <table className='text-center table-auto'>
             <thead>
               <tr>
-                <th className='bg-yellow-500 px-2 py-1 border-black border-2'>
+                <th className='bg-yellow-500 px-4 py-2 border-black border-2'>
                   Transaction ID
+                </th>
+                <th className='bg-yellow-500 px-2 py-1 border-black border-2'>
+                  Patient ID
                 </th>
                 <th className='bg-yellow-500 px-4 py-2 border-black border-2'>
                   Name
@@ -102,10 +105,13 @@ export default function Search() {
               {allSearchData.map((element) => {
                 return (
                   <tr>
-                    <td className='bg-white px-4 py-2 border-black border-2 text-sm whitespace-normal overflow-wrap-break-word w-1/6'>
+                    <td className='bg-white px-4 py-2 border-black border-2'>
                       {element.transactionId}
                     </td>
-                    <td className='bg-white px-4 py-2 border-black border-2 whitespace-normal break-words'>
+                    <td className='bg-white px-4 py-2 border-black border-2'>
+                      {element.payload.patientId}
+                    </td>
+                    <td className='bg-white px-4 py-2 border-black border-2'>
                       {element.payload.name}
                     </td>
                     <td className='bg-white px-4 py-2 border-black border-2'>
@@ -142,6 +148,9 @@ export default function Search() {
                 <th className='bg-yellow-500 px-2 py-1 border-black border-2'>
                   Transaction ID
                 </th>
+                <th className='bg-yellow-500 px-2 py-1 border-black border-2'>
+                  Patient ID
+                </th>
                 <th className='bg-yellow-500 px-4 py-2 border-black border-2'>
                   Name
                 </th>
@@ -174,10 +183,13 @@ export default function Search() {
                   if (Object.values(element.payload).includes(searchTerm)) {
                     return (
                       <tr>
-                        <td className='bg-white px-4 py-2 border-black border-2 text-sm whitespace-normal overflow-wrap-break-word w-1/6'>
+                        <td className='bg-white px-4 py-2 border-black border-2'>
                           {element.transactionId}
                         </td>
-                        <td className='bg-white px-4 py-2 border-black border-2 whitespace-normal break-words'>
+                        <td className='bg-white px-4 py-2 border-black border-2'>
+                          {element.payload.patientId}
+                        </td>
+                        <td className='bg-white px-4 py-2 border-black border-2'>
                           {element.payload.name}
                         </td>
                         <td className='bg-white px-4 py-2 border-black border-2'>
