@@ -7,8 +7,8 @@ async function userHistory() {
   });
 
   // Search terms - which blockchain and which user are we looking for?
-  const blockchainId = "f78b4aeb3979871111ae2984de352dee0a3e0da01c1236274dfbfb95e2ee05e3";
-  const userIdKeyword = "healthCareProviderAddress";
+  const blockchainId = process.env.BLOCKCHAIN_ID;
+  const userIdKeyword = "c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905";
   // Pagination parameters 
   const limit = 10;
   const offset = 0;
@@ -26,7 +26,7 @@ async function userHistory() {
   for (let i = 0; i < txns.length; i++) {
     let tempObject = {
       transactionId: txns[i]["transactionId"],
-      payload: txns[i]["payload"]
+      payload: eval('(' + txns[i]["payload"] + ')')
     }
     output.push(tempObject);
   };
