@@ -4,7 +4,7 @@ import buttonHooks from '../hooks/buttonHook';
 
 
 export default function NavBar({ readOnly }) {
-  
+
   const createHandler = (e) => {
     e.preventDefault();
     localStorage.clear();
@@ -37,6 +37,8 @@ export default function NavBar({ readOnly }) {
   
   const { createActive, readActive, updateActive, deleteActive, searchActive } = buttonHooks();
 
+  console.log(createActive);
+
   return (
     <>
       {readOnly ?
@@ -49,8 +51,8 @@ export default function NavBar({ readOnly }) {
         </ul>
         :
         <ul className='flex justify-center items-start gap-10 mt-5'>
-          {createActive === 'true' ?
-          <li className='!flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={createHandler}>
+          {(createActive === 'true') ?
+          <li className='flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={createHandler}>
             <Link href='/create'>
               CREATE
             </Link>
