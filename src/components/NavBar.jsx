@@ -37,7 +37,6 @@ export default function NavBar({ readOnly }) {
   
   const { createActive, readActive, updateActive, deleteActive, searchActive } = buttonHooks();
 
-  console.log(createActive);
 
   return (
     <>

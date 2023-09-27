@@ -47,7 +47,7 @@ export default function create() {
       {/* Form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h2 className='text-black font-2xl font-bold mt-5'>
-          INSERT NEW MEDICAL INFORMATION
+          INPUT NEW MEDICAL INFORMATION
         </h2>
         <Input
           className='text-center border-black border-4 text-black w-1/3'

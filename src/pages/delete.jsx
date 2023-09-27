@@ -35,7 +35,7 @@ export default function deleteUser() {
       <NavBar />
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
-          INSERT TRANSACTION ID
+          INPUT TRANSACTION ID
         </h1>
         <Input
           className='my-5 text-center border-black border-4 text-black w-3/4'

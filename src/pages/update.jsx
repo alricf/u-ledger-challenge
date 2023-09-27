@@ -41,7 +41,7 @@ export default function update() {
       <NavBar />
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
-          INSERT TRANSACTION ID
+          INPUT TRANSACTION ID
         </h1>
         <Input 
           className='text-center border-black border-4 text-black w-3/4'
@@ -52,7 +52,7 @@ export default function update() {
           text='Transaction ID'
         />
         <h1 className='text-black font-2xl font-bold mt-5'>
-          INSERT UPDATED MEDICAL INFORMATION
+          UPDATE MEDICAL INFORMATION
         </h1>
         <Input
           className='text-center border-black border-4 text-black w-1/3'
