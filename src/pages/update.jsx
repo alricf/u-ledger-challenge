@@ -26,9 +26,12 @@ export default function update() {
 
   const handleClick = (e) => {
     e.preventDefault()
+    // Error handling
+    if (!updateFormData.transactionId || !updateFormData.name || !updateFormData.age || !updateFormData.dob || !updateFormData.weight || !updateFormData.height || !updateFormData.vacStat || !updateFormData.doctor || !updateFormData.healthCardNum) return;
+
     axios.post(`http://localhost:3000/api/update`, updateFormData)
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         setNewTxnData(res.data.txn);
       });
   };
@@ -38,18 +41,21 @@ export default function update() {
       <NavBar />
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
-          INSERT UPDATED MEDICAL INFORMATION
+          INSERT TRANSACTION ID
         </h1>
         <Input 
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-3/4'
           type='text'
           name='transactionId'
           value={updateFormData.transactionId}
           onChange={onChange}
           text='Transaction ID'
         />
+        <h1 className='text-black font-2xl font-bold mt-5'>
+          INSERT UPDATED MEDICAL INFORMATION
+        </h1>
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='name'
           value={updateFormData.name}
@@ -57,7 +63,7 @@ export default function update() {
           text='Name'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='age'
           value={updateFormData.age}
@@ -65,7 +71,7 @@ export default function update() {
           text='Age'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='dob'
           value={updateFormData.dob}
@@ -73,7 +79,7 @@ export default function update() {
           text='Date of Birth'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='weight'
           value={updateFormData.weight}
@@ -81,7 +87,7 @@ export default function update() {
           text='Weight'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='height'
           value={updateFormData.height}
@@ -89,7 +95,7 @@ export default function update() {
           text='Height'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='vacStat'
           value={updateFormData.vacStat}
@@ -97,7 +103,7 @@ export default function update() {
           text='Vaccination Status'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='doctor'
           value={updateFormData.doctor}
@@ -105,7 +111,7 @@ export default function update() {
           text='Doctor'
         />
         <Input
-          className='text-center border-black border-4 text-black'
+          className='text-center border-black border-4 text-black w-1/3'
           type='text'
           name='healthCardNum'
           value={updateFormData.healthCardNum}
