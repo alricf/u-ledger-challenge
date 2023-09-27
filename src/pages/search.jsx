@@ -127,8 +127,7 @@ export default function Search() {
                       {element.transactionId}
                     </td>
                     <td className='bg-white px-4 py-2 border-black border-2 whitespace-normal break-words'>
-                      {/* {element.payload.name} */}
-                      iashdbasoujndajslnalksfnaklfnasklfnasklfnaklfnakslnfasklnfaklnfaklf
+                      {element.payload.name}
                     </td>
                     <td className='bg-white px-4 py-2 border-black border-2'>
                       {element.payload.age}

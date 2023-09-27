@@ -12,7 +12,7 @@ export default async function userHistory(req: NextApiRequest, res: NextApiRespo
     const blockchainId = process.env.BLOCKCHAIN_ID;
     const userIdKeyword = "c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905";
     // Pagination parameters 
-    const limit = 10;
+    const limit = 20;
     const offset = 0;
     const sort = true;
     const trim = false;
