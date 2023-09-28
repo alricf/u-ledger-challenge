@@ -27,7 +27,6 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
     delete payload.transactionId;
 
     // Search terms 
-    // const blockchainId = process.env.NODE_URL;
     const trim = false;
 
     //transaction by id and obtain patient id for new payload
@@ -49,7 +48,7 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
         const txnInputData: ULedgerTransactionInputV2 = {
             blockchainId: process.env.BLOCKCHAIN_ID,
             to: 'smartContractPublicAddress',
-            from: 'c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905',
+            from: 'testaddress2',
             payload: payload,
             payloadType: "DATA",
             senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"

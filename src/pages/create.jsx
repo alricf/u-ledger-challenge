@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
-import GenPDF from '../components/GenPDF'
+import GenPDF from '../components/GenPDF';
 
 export default function create() {
 
@@ -17,12 +17,13 @@ export default function create() {
     doctor: "",
     healthCardNum: "",
   });
+  
 
   const [newTxnData, setNewTxnData] = useState({});
   const [newPayloadData, setNewPayloadData,] = useState({});
 
   const currentDate = new Date().toISOString().split('T')[0];
-
+  
   // Helper Functions
   const onChange = (e) => {
     e.preventDefault();
@@ -155,7 +156,8 @@ export default function create() {
             }
             <br />
             <GenPDF 
-              data={newTxnData}
+              data={newPayloadData}
+              priorTransactionId={null}
               transactionId={newTxnData.transaction_id}
               type='createMedicalRecord'
             />

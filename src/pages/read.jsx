@@ -87,6 +87,7 @@ export default function read() {
             <br />
             <GenPDF 
               data={payloadData}
+              priorTransactionId={null}
               transactionId={transactionId}
               type='readMedicalRecord'
             />

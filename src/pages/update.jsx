@@ -1,3 +1,4 @@
+import GenPDF from '../components/GenPDF';
 import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
@@ -5,6 +6,7 @@ import Input from '../components/Input';
 
 export default function update() {
 
+  //set state for update form
   const [updateFormData, setUpdateFormData] = useState({
     transactionId: "",
     name: "",
@@ -17,19 +19,23 @@ export default function update() {
     healthCardNum: "",
   });
 
+  //set state for new txn id and payload
   const [newTxnData, setNewTxnData] = useState({});
   const [newPayloadData, setNewPayloadData] = useState({});
+  const [priorTransactionId, setPriorTransactionId] = useState('');
 
   const onChange = (e) => {
     e.preventDefault();
     setUpdateFormData(prev => ({ ...prev, [`${e.target.name}`]: e.target.value }));
   };
-
+  
+  //handle submit
   const handleClick = (e) => {
     e.preventDefault()
     // Error handling
     if (!updateFormData.transactionId || !updateFormData.name || !updateFormData.age || !updateFormData.dob || !updateFormData.weight || !updateFormData.height || !updateFormData.vacStat || !updateFormData.doctor || !updateFormData.healthCardNum) return;
-
+    setPriorTransactionId(updateFormData.transactionId);
+    
     axios.post(`http://localhost:3000/api/update`, updateFormData)
       .then(res => {
         //console.log(res.data);
@@ -39,6 +45,7 @@ export default function update() {
       });
   };
 
+  //tamplate
   return (
     <div className={'flex flex-col bg-yellow-300 h-screen'}>
       <NavBar />
@@ -156,6 +163,12 @@ export default function update() {
               `Health Card #: ${newPayloadData.healthCardNum}`
             }
             <br />
+            <GenPDF 
+              data={newPayloadData}
+              priorTransactionId={priorTransactionId}
+              transactionId={newTxnData.transaction_id}
+              type='updateMedicalRecord'
+            />
           </label>
         </div>
       }
