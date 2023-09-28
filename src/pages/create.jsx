@@ -154,11 +154,11 @@ export default function create() {
               `Health Card #: ${newPayloadData.healthCardNum}`
             }
             <br />
-            {/* <GenPDF 
+            <GenPDF 
               data={newTxnData}
-              transactionId={transactionId}
-              type='readMedicalRecord'
-            /> */}
+              transactionId={newTxnData.transaction_id}
+              type='createMedicalRecord'
+            />
           </label>
         </div>
       }

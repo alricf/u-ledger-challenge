@@ -34,7 +34,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
     const txnInputData: ULedgerTransactionInputV2 = {
       blockchainId: process.env.BLOCKCHAIN_ID,
       to: 'smartContractPublicAddress',
-      from: 'c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905',
+      from: 'testaddress',
       payload: payload,
       payloadType: "DATA",
       senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"
