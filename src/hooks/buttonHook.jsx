@@ -8,7 +8,6 @@ export default function buttonHooks() {
   const [deleteActive, setDeleteActive] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
 
-
   useEffect(() => {
       setCreateActive(localStorage.getItem('create'));
       setReadActive(localStorage.getItem('read'));
