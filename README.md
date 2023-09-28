@@ -15,6 +15,10 @@ The application was built to provide a decentralized way of storing medical reco
 4. Run the development server with `npm run dev`.
 5. Navigate to [http://localhost:3000](http://localhost:3000) in a browser to run the web aplication.
 
+## Languages
+- JavaScript
+- TypeScript
+
 ## Dependencies
 - NextJS
 - ReactJS
