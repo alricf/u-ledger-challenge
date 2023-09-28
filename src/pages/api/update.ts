@@ -31,7 +31,7 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
     // Search terms 
     const trim = false;
 
-    // Obatin transaction by id and patient id for new payload
+    // Obtain transaction by id and patient id for new payload
     const bmsTxn = await session.searchTransactionById(searchTxnId, trim);
     const bmsTxnPayload = eval('(' + bmsTxn.payload + ')');
     const patientId = bmsTxnPayload.patientId;
