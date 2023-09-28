@@ -51,6 +51,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
 
     const txn = await txnSession.createTransaction(txnInputData);
 
+    console.log(txn);
     res.status(200).json({ txn });
   } catch (error) {
     res.status(500).json({ error });

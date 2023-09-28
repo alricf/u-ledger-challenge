@@ -27,7 +27,7 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
     delete payload.transactionId;
 
     // Search terms 
-    const blockchainId = process.env.NODE_URL;
+    // const blockchainId = process.env.NODE_URL;
     const trim = false;
 
     //transaction by id and obtain patient id for new payload
@@ -64,8 +64,8 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
         const signature = sign.sign(privateKey, 'base64');
         txnInputData.senderSignature = sha256Hash(signature);
   
-        const txn = await txnSession.createTransaction(txnInputData);
-
+        const txn = await txnSession.createTransaction(txnInputData); 
+        console.log(txn);
         res.status(200).json({ txn });
     } catch (error) {
         res.status(500).json({ error });

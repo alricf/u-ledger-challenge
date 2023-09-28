@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
+import GenPDF from '../components/GenPDF'
 
 export default function create() {
 
@@ -18,6 +19,7 @@ export default function create() {
   });
 
   const [newTxnData, setNewTxnData] = useState({});
+  const [newPayloadData, setNewPayloadData,] = useState({});
 
   const currentDate = new Date().toISOString().split('T')[0];
 
@@ -36,8 +38,10 @@ export default function create() {
 
     axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
-        // console.log(res.data.txn);
         setNewTxnData(res.data.txn);
+        const newPay = eval('(' + (res.data.txn.payload) + ')')
+        setNewPayloadData(newPay);
+        console.log(newPay)
       });
   };
 
@@ -126,6 +130,35 @@ export default function create() {
           </h2>
           <label className='text-lg text-black mb-10'>
             {newTxnData.transaction_id}
+          </label>
+          <h2 className='text-black font-2xl font-bold my-5 text-center'>
+            MEDICAL RECORD
+          </h2>
+          <label className='text-lg text-black mb-10 text-center'>
+            {newPayloadData.name && `Name: ${newPayloadData.name}`}
+            <br />
+            {newPayloadData.age && `Age: ${newPayloadData.age}`}
+            <br />
+            {newPayloadData.dob && `Date of Birth: ${newPayloadData.dob}`}
+            <br />
+            {newPayloadData.weight && `Weight: ${newPayloadData.weight}`}
+            <br />
+            {newPayloadData.height && `Height: ${newPayloadData.height}`}
+            <br />
+            {newPayloadData.vacStat && `Vaccincation Status: ${newPayloadData.vacStat}`}
+            <br />
+            {newPayloadData.doctor && `Doctor: ${newPayloadData.doctor}`}
+            <br />
+            {
+              newPayloadData.healthCardNum &&
+              `Health Card #: ${newPayloadData.healthCardNum}`
+            }
+            <br />
+            {/* <GenPDF 
+              data={newTxnData}
+              transactionId={transactionId}
+              type='readMedicalRecord'
+            /> */}
           </label>
         </div>
       }
