@@ -1,23 +1,27 @@
+// Imports
 import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
+import GenPDF from '../components/GenPDF';
 
 export default function deleteUser() {
 
+  // Set useState constants
   const [transactionId, setTransactionId] = useState('');
   const [payloadData, setPayloadData] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Handle change
   const onChange = (e) => {
     e.preventDefault();
     setTransactionId(e.target.value);
-    console.log(transactionId);
   };
 
+  // Handle click
   const handleClick = (e) => {
     e.preventDefault();
-    // console.log(formMedData);
+
     axios.post(`http://localhost:3000/api/delete`, {transactionId})
       .then(res => {
         setErrorMsg('')
@@ -25,11 +29,11 @@ export default function deleteUser() {
       })
       .catch(error => {
         setPayloadData({})
-        // console.log(error.response.data.error)
         setErrorMsg(error.response.data.error)
       })
   };
 
+  // Template
   return (
     <div className='flex flex-col bg-yellow-300 h-screen w-full'>
       <NavBar />
@@ -66,10 +70,16 @@ export default function deleteUser() {
             MEDICAL RECORD
           </h2>
           <label className='text-lg text-black mb-10 text-center'>
-            {payloadData.patientId && `PATIENT ID: ${payloadData.patientId}`}
+            {payloadData.patientId && `Patient ID: ${payloadData.patientId}`}
             <br />
-            {payloadData.status && `STATUS: ${payloadData.status}`}
+            {payloadData.status && `Status: ${payloadData.status}`}
             <br />
+            <GenPDF 
+              data={payloadData}
+              priorTransactionId={transactionId}
+              transactionId={payloadData.transaction_id}
+              type='deleteMedicalRecord'
+            />
           </label>
         </div>
       }

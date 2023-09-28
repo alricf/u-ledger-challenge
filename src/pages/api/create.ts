@@ -1,7 +1,9 @@
+// Imports
 import { NextApiRequest, NextApiResponse } from 'next';
 const { ULedgerTransactionInputV2, ULedgerTransactionSessionV2 } = require('@uledger/uledger-sdk');
 import crypto from 'crypto';
 
+// Generate private key
 const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
   modulusLength: 2048,
   publicKeyEncoding: {
@@ -14,16 +16,17 @@ const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
   },
 });
 
+// Blockchain transaction begins
 export default async function createTransactionHandler(req: NextApiRequest, res: NextApiResponse) {
-  // console.log(req.body)
+  
+  // Set payload from body
   let payload = req.body;
   const uuid = crypto.randomUUID();
-  // console.log(uuid);
+
+  // Assign patient ID to payload
   payload['patientId'] = uuid;
-  // console.log(payload);
 
-  const my_address = sha256Hash(publicKey);
-
+  // Create new blockchain transaction
   try {
     const txnSession = new ULedgerTransactionSessionV2({
       nodeUrl: process.env.NODE_URL,

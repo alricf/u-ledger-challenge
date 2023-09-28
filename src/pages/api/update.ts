@@ -1,7 +1,9 @@
+// Imports
 import { NextApiRequest, NextApiResponse } from 'next';
 const { ULedgerBMSSession, ULedgerTransactionV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
 import crypto from 'crypto'
 
+// Generate private key
 const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     modulusLength: 2048,
     publicKeyEncoding: {
@@ -14,30 +16,28 @@ const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     },  
 });
 
+// Blockchain transaction begins
 export default async function update(req: NextApiRequest, res:NextApiResponse) {
 
     const session = new ULedgerBMSSession({
       url: "https://uledger.net/api/v1/bms"
     });
 
-    //get transaction from body
+    // Get transaction, payload from body 
     const searchTxnId = req.body.transactionId;
-    
-    let payload = req.body;
+    const payload = req.body;
     delete payload.transactionId;
 
     // Search terms 
     const trim = false;
 
-    //transaction by id and obtain patient id for new payload
+    // Obatin transaction by id and patient id for new payload
     const bmsTxn = await session.searchTransactionById(searchTxnId, trim);
     const bmsTxnPayload = eval('(' + bmsTxn.payload + ')');
     const patientId = bmsTxnPayload.patientId;
-
     payload.patientId = patientId;
 
-    const my_address = sha256Hash(publicKey);
-
+    // Create new transaction with updated payload
     try {
         const txnSession = new ULedgerTransactionSessionV2({
             nodeUrl: process.env.NODE_URL,

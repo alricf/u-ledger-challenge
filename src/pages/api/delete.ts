@@ -1,3 +1,4 @@
+// Imports
 import { NextApiRequest, NextApiResponse } from 'next';
 const { ULedgerBMSSession, ULedgerTransactionV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
 import crypto from 'crypto'
@@ -14,6 +15,7 @@ const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     },  
 });
 
+// API request from blockchain
 export default async function deleteUser(req: NextApiRequest, res:NextApiResponse) {
 
     const session = new ULedgerBMSSession({
@@ -41,6 +43,7 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
    
     const my_address = sha256Hash(publicKey);
 
+    // New blockchain transaction
     try {
         const txnSession = new ULedgerTransactionSessionV2({
             nodeUrl: process.env.NODE_URL,
@@ -51,7 +54,7 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
         const txnInputData: ULedgerTransactionInputV2 = {
             blockchainId: process.env.BLOCKCHAIN_ID,
             to: 'smartContractPublicAddress',
-            from: 'c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905',
+            from: 'testaddress3',
             payload: payload,
             payloadType: "DATA",
             senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"
