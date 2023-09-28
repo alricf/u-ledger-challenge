@@ -4,12 +4,15 @@ import Input from '../components/Input';
 import axios from 'axios';
 
 export default function Search() {
+
+  // Variables
   const [searchTerm, setSearchTerm] = useState('');
   const [all, setAll] = useState(true);
   const [searchButton, setSearchButton] = useState(false);
   const [allSearchData, setAllSearchData] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Fetch data from back-end search api upon first render
   useEffect(() => {
     axios.get(`http://localhost:3000/api/search`)
       .then(res => {
@@ -18,6 +21,7 @@ export default function Search() {
       });
   }, []);
 
+  // Event handlers
   const onChange = (e) => {
     setSearchTerm(e.target.value);
     if (searchButton) setSearchButton(false);
@@ -25,7 +29,6 @@ export default function Search() {
 
   const onClick = (e) => {
     e.preventDefault();
-    // console.log(e.target.name);
     if (e.target.name === 'search' && searchTerm) {
       setErrorMsg('');
       if (all) setAll(false);
@@ -42,6 +45,7 @@ export default function Search() {
     }
   };
 
+  // Template
   return (
     <div className='flex flex-col items-center bg-yellow-500 text-black h-screen px-2'>
       <NavBar />
@@ -70,11 +74,13 @@ export default function Search() {
             ALL DATA
           </button>
         </form>
+        {/* Error handling */}
         {errorMsg &&
           <div className='flex flex-col justify-center items-center bg-red-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl w-full text-white'>
             {errorMsg}
           </div>
         }
+        {/* Show all data */}
         {(!errorMsg && all && !searchButton && (allSearchData.length > 0)) &&
           <table className='text-center table-auto'>
             <thead>
@@ -151,6 +157,7 @@ export default function Search() {
             </tbody>
           </table>
         }
+        {/* Show search data */}
         {(!errorMsg && !all && searchButton && (allSearchData.length > 0)) &&
           <table>
             <thead>
