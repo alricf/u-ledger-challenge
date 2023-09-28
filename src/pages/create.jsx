@@ -40,7 +40,6 @@ export default function create() {
         setNewTxnData(res.data.txn);
         const newPay = eval('(' + (res.data.txn.payload) + ')')
         setNewPayloadData(newPay);
-        console.log(newPay)
       });
   };
 
@@ -156,7 +155,7 @@ export default function create() {
             <br />
             {/* Generate PDF with new medical record data */}
             <GenPDF 
-              data={newTxnData}
+              data={newPayloadData}
               transactionId={newTxnData.transaction_id}
               type='createMedicalRecord'
             />
