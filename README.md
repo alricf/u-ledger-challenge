@@ -1,38 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Purpose
+This web application was created for the ULedger Blockchain Hackathon and is used to store medical records on the ULedger blockchain.
+
+## About
+This web application was built as a full-stack application used in conjunction with the ULedger Blockchain as a database to create, read, update and delete data held in blockchain transactions running on a public ULedger blockchain. The data in the application deals with medical records. The medical records consist of a person's data that includes Name, Age, Date of Birth, Weight, Height, Vaccination Status, Doctor and Health Card Number. 
+
+The web application has two portals. The health care provider portal provides access to all options to manipulate data on the blockchain which includes create, read, update and delete features. Additionally, a search feature that allows the health care provider to query the blockchain for all transactions or a specific transaction associated to its facility is also present. The patient portal provides access to a read only feature in order to access their medical data for auditing purposes.
+
+The application was built to provide a decentralized way of storing medical records for people. By doing so, it solves the issue of a single point of failure when it comes to how medical records are usually stored in our world today in a centralized database that is prone to security issues. These issues may include a hacker gaining access to the centralized medical database and maliciously manipulating the data. By storing sensitive data such as medical records it solves the issue of a single point of failure. The data is also transparent yet protected by ULedger's blockchain technology.
 
 ## Getting Started
+1. Fork and clone this repository to your local machine.
+2. Navigate to the project root folder.
+3. Install dependencies with `npm install`.
+4. Run the development server with `npm run dev`.
+5. Navigate to [http://localhost:3000](http://localhost:3000) in a browser to run the web aplication.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Dependencies
+- NextJS
+- ReactJS
+- TailwindCSS
+- Axios

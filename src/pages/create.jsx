@@ -1,3 +1,4 @@
+// Imports
 import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
@@ -6,7 +7,7 @@ import GenPDF from '../components/GenPDF';
 
 export default function create() {
 
-  // Hooks
+  // Variables
   const [formMedData, setFormMedData] = useState({
     name: "",
     age: "",
@@ -21,35 +22,34 @@ export default function create() {
 
   const [newTxnData, setNewTxnData] = useState({});
   const [newPayloadData, setNewPayloadData,] = useState({});
-
   const currentDate = new Date().toISOString().split('T')[0];
-  
-  // Helper Functions
+
+  // Event handlers
   const onChange = (e) => {
     e.preventDefault();
     setFormMedData(prev => ({ ...prev, [`${e.target.name}`]: e.target.value }));
-    // console.log(formMedData)
   };
 
   const handleClick = (e) => {
-    // console.log(formMedData);
     e.preventDefault();
-    // Error Handling
+
+    // Form error handling
     if (!formMedData.name || !formMedData.age || !formMedData.dob || !formMedData.weight || !formMedData.height || !formMedData.vacStat || !formMedData.doctor || !formMedData.healthCardNum) return;
 
+    // Posting form data to and receiving transaction confirmation from back-end create api
     axios.post(`http://localhost:3000/api/create`, formMedData)
       .then(res => {
         setNewTxnData(res.data.txn);
         const newPay = eval('(' + (res.data.txn.payload) + ')')
         setNewPayloadData(newPay);
-        console.log(newPay)
       });
   };
 
+  // Template
   return (
     <div className='flex flex-col bg-yellow-300 h-screen w-full'>
       <NavBar />
-      {/* Form */}
+      {/* Create new medical record form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h2 className='text-black font-2xl font-bold mt-5'>
           INPUT NEW MEDICAL INFORMATION
@@ -123,7 +123,7 @@ export default function create() {
           SUBMIT
         </button>
       </form>
-      {/*Display Transaction ID*/}
+      {/* Display new transaction data */}
       {Object.keys(newTxnData).length > 0 &&
         <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
@@ -155,6 +155,7 @@ export default function create() {
               `Health Card #: ${newPayloadData.healthCardNum}`
             }
             <br />
+            {/* Generate PDF with new medical record data */}
             <GenPDF 
               data={newPayloadData}
               priorTransactionId={null}
