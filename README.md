@@ -20,7 +20,9 @@ The application was built to provide a decentralized way of storing medical reco
 - TypeScript
 
 ## Dependencies
+- NodeJS
 - NextJS
 - ReactJS
 - TailwindCSS
 - Axios
+- jspdf
