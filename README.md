@@ -33,3 +33,12 @@ The application was built to provide a decentralized way of storing medical reco
 - TailwindCSS
 - Axios
 - jspdf
+
+## Contributors
+<img src='https://avatars.githubusercontent.com/u/22061153?s=96&v=4' width='50px'>
+
+[Alric Fernandes](https://github.com/alricf)
+
+<img src='https://avatars.githubusercontent.com/u/124848130?v=4' width='50px'>
+
+[Josh Kelly](https://github.com/7-O-2-H)
