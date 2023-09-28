@@ -1,3 +1,4 @@
+// Imports
 import { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
@@ -6,12 +7,12 @@ import GenPDF from '../components/GenPDF';
 
 export default function read() {
 
-  // Hooks
+  // Variables
   const [transactionId, setTransactionId] = useState('');
   const [payloadData, setPayloadData] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Helper Functions
+  // Event handlers
   const onChange = (e) => {
     e.preventDefault();
     setTransactionId(e.target.value);
@@ -20,25 +21,25 @@ export default function read() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // console.log(formMedData);
+
+    // Post transaction ID to and receive transaction data from back-end read api
     axios.post(`http://localhost:3000/api/read`, {transactionId})
       .then(res => {
         setErrorMsg('')
-        // console.log(res.data.txPayload);
         setPayloadData(res.data.txPayload);
       })
       .catch(error => {
+        // Error management
         setPayloadData({})
-        // console.log(error.response.data.error)
         setErrorMsg(error.response.data.error)
       })
   };
 
-  // console.log(payloadData);
-
+  // Template
   return (
     <div className='flex flex-col bg-yellow-300 h-screen w-full'>
       <NavBar />
+      {/* Transaction ID input form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
           INPUT TRANSACTION ID
@@ -55,11 +56,13 @@ export default function read() {
           SUBMIT
         </button>
       </form>
+      {/* Error handling */}
       {errorMsg && 
         <div className='flex flex-col justify-center items-center bg-red-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
           {errorMsg}
         </div>
       }
+      {/* Show transaction medical record data */}
       {Object.keys(payloadData).length > 0 &&
         <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
@@ -85,6 +88,7 @@ export default function read() {
               `Health Card #: ${payloadData.healthCardNum}`
             }
             <br />
+            {/* Generate PDF with medical record data */}
             <GenPDF 
               data={payloadData}
               transactionId={transactionId}
