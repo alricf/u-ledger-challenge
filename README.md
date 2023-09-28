@@ -12,8 +12,15 @@ The application was built to provide a decentralized way of storing medical reco
 1. Fork and clone this repository to your local machine.
 2. Navigate to the project root folder.
 3. Install dependencies with `npm install`.
-4. Run the development server with `npm run dev`.
-5. Navigate to [http://localhost:3000](http://localhost:3000) in a browser to run the web aplication.
+4. Create a .env file with the following parameters and input their values into the quotations:
+    ```
+    NODE_URL=""
+    ATOMIC_CLOCK_URL=""
+    NODE_ID=""
+    BLOCKCHAIN_ID=""
+    ```
+5. Run the development server with `npm run dev`.
+6. Navigate to [http://localhost:3000](http://localhost:3000) in a browser to run the web aplication.
 
 ## Languages
 - JavaScript
