@@ -1,7 +1,9 @@
+// Impors
 import { NextApiRequest, NextApiResponse } from 'next';
 const { ULedgerBMSSession, ULedgerTransactionV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
 import crypto from 'crypto'
 
+// Generate private key
 const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     modulusLength: 2048,
     publicKeyEncoding: {
@@ -14,6 +16,7 @@ const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     },  
 });
 
+// Blockchain treansaction
 export default async function deleteUser(req: NextApiRequest, res:NextApiResponse) {
 
     const session = new ULedgerBMSSession({
@@ -24,23 +27,19 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
 
     // Search terms 
     const blockchainId = process.env.NODE_URL;
-    
-    
     const trim = false;
 
-    const bmsTxn = await session.searchTransactionById(searchTxnId, trim);
-    //console.log("Retreived transaction by ID:\n", bmsTxn);
-    
+    // Obtain patient ID from prior transaction
+    const bmsTxn = await session.searchTransactionById(searchTxnId, trim);    
     const bmsTxnPayload = eval('(' + bmsTxn.payload + ')');
     const patientId = bmsTxnPayload.patientId;
 
     const payload = {
-      patientId: patientId,
+      patientId: eval('(' + patientId + ')'),
       status: "inactive",
     };
    
-    const my_address = sha256Hash(publicKey);
-
+    // Create new blockchain transaction
     try {
         const txnSession = new ULedgerTransactionSessionV2({
             nodeUrl: process.env.NODE_URL,
@@ -81,6 +80,7 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
     
 };
 
+// Create hash
 function sha256Hash(data: string): string {
     const hash = crypto.createHash('sha256');
     hash.update(data);

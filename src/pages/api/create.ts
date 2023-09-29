@@ -63,6 +63,7 @@ export default async function createTransactionHandler(req: NextApiRequest, res:
 
 }
 
+// Create hash
 function sha256Hash(data: string): string {
   const hash = crypto.createHash('sha256');
   hash.update(data);
