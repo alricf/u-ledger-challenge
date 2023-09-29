@@ -1,10 +1,11 @@
+// Imports
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import buttonHooks from '../hooks/buttonHook';
 
-
 export default function NavBar({ readOnly }) {
-
+  
+  // Handlers for clicking buttons
   const createHandler = (e) => {
     e.preventDefault();
     localStorage.clear();
@@ -35,11 +36,13 @@ export default function NavBar({ readOnly }) {
     localStorage.setItem('search', 'true');
   }
   
+  // Uses customhook to highlight selected page
   const { createActive, readActive, updateActive, deleteActive, searchActive } = buttonHooks();
 
-
+  // Template
   return (
     <>
+      {/* Page buttons; each button uses a ternary operation to display different CSS to signify when selected*/} 
       {readOnly ?
         <ul className='flex justify-center items-start mt-5'>
           <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>

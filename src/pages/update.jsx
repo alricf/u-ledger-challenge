@@ -36,6 +36,7 @@ export default function update() {
     if (!updateFormData.transactionId || !updateFormData.name || !updateFormData.age || !updateFormData.dob || !updateFormData.weight || !updateFormData.height || !updateFormData.vacStat || !updateFormData.doctor || !updateFormData.healthCardNum) return;
     setPriorTransactionId(updateFormData.transactionId);
 
+    // Axios call; posting form data and applying to prior transaction ID with same patient ID
     axios.post(`http://localhost:3000/api/update`, updateFormData)
       .then(res => {
         setNewTxnData(res.data.txn);
@@ -48,6 +49,7 @@ export default function update() {
   return (
     <div className={'flex flex-col bg-yellow-300 h-screen'}>
       <NavBar />
+      {/* Create updated medical record form */}
       <form className='flex flex-col justify-center items-center my-10 bg-teal-500 gap-5 mx-40 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
         <h1 className='text-black font-2xl font-bold mt-5'>
           INPUT TRANSACTION ID
@@ -131,6 +133,7 @@ export default function update() {
           SUBMIT
         </button>
       </form>
+      {/* Display updated transaction data */}
       {Object.keys(newTxnData).length > 0 &&
         <div className='flex flex-col justify-center items-center bg-teal-500 mx-40 mb-10 text-xl border-black border-4 rounded-t-2xl rounded-b-2xl'>
           <h2 className='text-black font-2xl font-bold my-5 text-center'>
@@ -162,6 +165,7 @@ export default function update() {
               `Health Card #: ${newPayloadData.healthCardNum}`
             }
             <br />
+            {/* Generate PDF of updated medical record */}
             <GenPDF 
               data={newPayloadData}
               priorTransactionId={priorTransactionId}

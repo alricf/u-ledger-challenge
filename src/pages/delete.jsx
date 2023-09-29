@@ -12,7 +12,7 @@ export default function deleteUser() {
   const [payloadData, setPayloadData] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Handle change
+  // Handle changes
   const onChange = (e) => {
     e.preventDefault();
     setTransactionId(e.target.value);
@@ -22,6 +22,7 @@ export default function deleteUser() {
   const handleClick = (e) => {
     e.preventDefault();
 
+    // Axios call to api
     axios.post(`http://localhost:3000/api/delete`, {transactionId})
       .then(res => {
         setErrorMsg('')

@@ -1,5 +1,7 @@
+// Import react hooks
 import { useState, useEffect } from "react";
 
+// Button hooks
 export default function buttonHooks() {
   
   const [createActive, setCreateActive] = useState(false);
@@ -8,14 +10,13 @@ export default function buttonHooks() {
   const [deleteActive, setDeleteActive] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
 
+  // UseEffect hooks to preload highlighted data
   useEffect(() => {
       setCreateActive(localStorage.getItem('create'));
       setReadActive(localStorage.getItem('read'));
       setUpdateActive(localStorage.getItem('update'));
       setDeleteActive(localStorage.getItem('delete'));
       setSearchActive(localStorage.getItem('search'));
-
-      // console.log(createActive, readActive)
   }, []);
 
   return {createActive, readActive, updateActive, deleteActive, searchActive};
