@@ -78,13 +78,13 @@ export default function NavBar({ readOnly }) {
           </li>
           {(createActive === 'true') ?
           <li className='flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={createHandler}>
-            <Link href='/create'>
+            <Link href='/Create'>
               CREATE
             </Link>
           </li>
           :
           <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={createHandler}>
-            <Link href='/create'>
+            <Link href='/Create'>
               CREATE
             </Link>
           </li>
