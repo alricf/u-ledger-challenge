@@ -35,7 +35,7 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
     const patientId = bmsTxnPayload.patientId;
 
     const payload = {
-      patientId: eval('(' + patientId + ')'),
+      patientId: patientId,
       status: "inactive",
     };
    
