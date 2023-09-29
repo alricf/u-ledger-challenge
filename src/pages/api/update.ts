@@ -48,7 +48,7 @@ export default async function update(req: NextApiRequest, res:NextApiResponse) {
         const txnInputData: ULedgerTransactionInputV2 = {
             blockchainId: process.env.BLOCKCHAIN_ID,
             to: 'smartContractPublicAddress',
-            from: '6c39bc0c2483a4b5b01bd02c13624c114efc5336fe55c32b8e54a5b35664cb79',
+            from: '06dc8681fbdae36d8235fe1c86f531b6c13cd722b8c2bc9cebea3d2acded0d2d',
             payload: payload,
             payloadType: "DATA",
             senderSignature: "UPDATE THIS AFTER SIGNING AND BEFORE UPLOADING"
