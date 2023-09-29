@@ -32,7 +32,7 @@ The application was built to provide a decentralized way of storing medical reco
 - ReactJS
 - TailwindCSS
 - Axios
-- jspdf
+- jsPDF
 
 ## Screenshots
 
