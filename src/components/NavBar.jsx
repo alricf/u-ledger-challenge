@@ -1,5 +1,4 @@
 // Imports
-import { useState, useEffect } from 'react';
 import Link from "next/link";
 import buttonHooks from '../hooks/buttonHook';
 
@@ -50,7 +49,12 @@ export default function NavBar({ readOnly }) {
     <>
       {/* Page buttons; each button uses a ternary operation to display different CSS to signify when selected*/} 
       {readOnly ?
-        <ul className='flex justify-center items-start mt-5'>
+        <ul className='flex justify-center items-start gap-10 mt-5'>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
+            <Link href='/'>
+            HOME
+            </Link>
+          </li>
           {(readPatientActive === 'true') ?
           <li className='flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={readPatientHandler}>
             <Link href='/readPatient'>
@@ -67,6 +71,11 @@ export default function NavBar({ readOnly }) {
         </ul>
         :
         <ul className='flex justify-center items-start gap-10 mt-5'>
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
+            <Link href='/'>
+            HOME
+            </Link>
+          </li>
           {(createActive === 'true') ?
           <li className='flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={createHandler}>
             <Link href='/create'>

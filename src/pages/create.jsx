@@ -4,6 +4,7 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 import GenPDF from '../components/GenPDF';
+import Link from 'next/link';
 
 export default function create() {
 
@@ -164,7 +165,7 @@ export default function create() {
             />
           </label>
         </div>
-      }
+        } 
     </div>
   );
 }
