@@ -11,7 +11,7 @@ export default async function userHistory(req: NextApiRequest, res: NextApiRespo
 
     // Search terms - which blockchain and which user are we looking for?
     const blockchainId = process.env.BLOCKCHAIN_ID;
-    const userIdKeyword = "c85458e3eeb0f6f1013d389635e931ff90457dbaf53cc4495b20e79d8d903905";
+    const userIdKeyword = "6c39bc0c2483a4b5b01bd02c13624c114efc5336fe55c32b8e54a5b35664cb79";
     // Pagination parameters 
     const limit = 20;
     const offset = 0;
