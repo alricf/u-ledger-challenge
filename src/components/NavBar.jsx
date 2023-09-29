@@ -35,9 +35,15 @@ export default function NavBar({ readOnly }) {
     localStorage.clear();
     localStorage.setItem('search', 'true');
   }
+
+  const readPatientHandler = (e) => {
+    e.preventDefault()
+    localStorage.clear();
+    localStorage.setItem('readPatient', 'true');
+  }
   
   // Uses customhook to highlight selected page
-  const { createActive, readActive, updateActive, deleteActive, searchActive } = buttonHooks();
+  const { createActive, readActive, updateActive, deleteActive, searchActive, readPatientActive } = buttonHooks();
 
   // Template
   return (
@@ -45,11 +51,19 @@ export default function NavBar({ readOnly }) {
       {/* Page buttons; each button uses a ternary operation to display different CSS to signify when selected*/} 
       {readOnly ?
         <ul className='flex justify-center items-start mt-5'>
-          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold'>
+          {(readPatientActive === 'true') ?
+          <li className='flex justify-center align-center bg-red-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={readPatientHandler}>
             <Link href='/readPatient'>
               READ
             </Link>
           </li>
+          :
+          <li className='flex justify-center align-center bg-green-500 border-4 border-black w-40 text-black rounded-t-2xl rounded-b-2xl font-bold' onClick={readPatientHandler}>
+            <Link href='/readPatient'>
+              READ
+            </Link>
+          </li>
+          }
         </ul>
         :
         <ul className='flex justify-center items-start gap-10 mt-5'>
