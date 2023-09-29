@@ -1,6 +1,6 @@
 // Impors
 import { NextApiRequest, NextApiResponse } from 'next';
-const { ULedgerBMSSession, ULedgerTransactionV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
+const { ULedgerBMSSession, ULedgerTransactionInputV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
 import crypto from 'crypto'
 
 // Generate private key
@@ -47,7 +47,7 @@ export default async function deleteUser(req: NextApiRequest, res:NextApiRespons
             nodeId: process.env.NODE_ID
         });
 
-        const txnInputData: ULedgerTransactionInputV2 = {
+        const txnInputData: typeof ULedgerTransactionInputV2 = {
             blockchainId: process.env.BLOCKCHAIN_ID,
             to: 'smartContractPublicAddress',
             from: 'dca7029ff6913281a60acf3a6af4d8d66bea03e643f3e6a4da34c390a853c335',
