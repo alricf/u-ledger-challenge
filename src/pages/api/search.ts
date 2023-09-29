@@ -1,15 +1,16 @@
-
+// Imports
 import { NextApiRequest, NextApiResponse } from 'next'; 
 const { ULedgerBMSSession } = require("@uledger/uledger-sdk");
 
 export default async function userHistory(req: NextApiRequest, res: NextApiResponse) {
 
   try {
+    // Create a session with the ULedger blockchain
     const session = new ULedgerBMSSession({
       url: "https://uledger.net/api/v1/bms"
     });
 
-    // Search terms - which blockchain and which user are we looking for?
+    // Search terms - ULedger blockchain ID and health care provider public wallet
     const blockchainId = process.env.BLOCKCHAIN_ID;
     const userIdKeyword = "6c39bc0c2483a4b5b01bd02c13624c114efc5336fe55c32b8e54a5b35664cb79";
     // Pagination parameters 
@@ -19,13 +20,16 @@ export default async function userHistory(req: NextApiRequest, res: NextApiRespo
     const trim = false;
     const publicBool = true;
   
-    // Send the request
+    // Send the request to get all transactions associated with the health care provider wallet
     const history = await session.userHistory(blockchainId, userIdKeyword, limit, offset, sort, trim, publicBool);
 
+    // API response variable
     let output: Array<object> = [];
     
+    // Store all transactions where the health care provider public address is the from address associated with the transactions
     const txns = history.from.payload;
 
+    // Building values into the response output variable
     for (let i = 0; i < txns.length; i++) {
       let tempObject = {
         transactionId: txns[i]["transactionId"],
@@ -34,10 +38,10 @@ export default async function userHistory(req: NextApiRequest, res: NextApiRespo
       output.push(tempObject);
     };
 
-    // console.log(output);
+    // Send the response output variable to the front-end
     res.status(200).json({ output });
   } catch (error) {
+    // Respond with the error, if there is one
     res.status(500).json({ error });
-    console.error("Fail ", error);
   }
 }
