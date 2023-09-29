@@ -34,6 +34,39 @@ The application was built to provide a decentralized way of storing medical reco
 - Axios
 - jspdf
 
+## Screenshots
+
+### Home Page
+Pick between the health care provider or patient portal.
+![Home Page](docs/Home-Page.png)
+
+### Options Page
+Pick an option to interact with the blockchain.
+![Options Page](docs/Options.png)
+
+### Create Page
+Create a medical record to be stored on the blockchain.
+![Creat Page](docs/Create.png)
+![Create Input](docs/Create-input.png)
+
+### Read Page
+Input an existing transaction to access the medical record on the blockchain.
+![Read Page](docs/Read.png)
+![Read Record](docs/Returned-Data.png)
+
+### Update Page
+Update a medical record on the blockchain with new data.
+![Update Page](docs/Update.png)
+
+### Delete Page
+Delete a medical record on the blockchain.
+![Delete Page](docs/Delete.png)
+![Delete Record Confirmation](docs/Delete-Data.png)
+
+### Search Page
+Search all medical data associated with transactions related to the health care provider.
+![Search Page](docs/Search.png)
+
 ## Contributors
 <img src='https://avatars.githubusercontent.com/u/22061153?s=96&v=4' width='50px'>
 
