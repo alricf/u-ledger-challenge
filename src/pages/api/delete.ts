@@ -1,4 +1,4 @@
-// Impors
+// Imports
 import { NextApiRequest, NextApiResponse } from 'next';
 const { ULedgerBMSSession, ULedgerTransactionInputV2, ULedgerTransactionSessionV2 } = require("@uledger/uledger-sdk");
 import crypto from 'crypto'
