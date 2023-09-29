@@ -12,7 +12,7 @@ export default async function userHistory(req: NextApiRequest, res: NextApiRespo
 
     // Search terms - ULedger blockchain ID and health care provider public wallet
     const blockchainId = process.env.BLOCKCHAIN_ID;
-    const userIdKeyword = "5feb4dd3326c53b1354749033297a506d9ef4652b89b17e2d7f0f6d0a794bb7e";
+    const userIdKeyword = "06dc8681fbdae36d8235fe1c86f531b6c13cd722b8c2bc9cebea3d2acded0d2d";
     // Pagination parameters 
     const limit = 20;
     const offset = 0;
