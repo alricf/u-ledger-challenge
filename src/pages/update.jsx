@@ -4,7 +4,7 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 
-export default function update() {
+export default function Update() {
 
   // Set state for update form
   const [updateFormData, setUpdateFormData] = useState({

@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 import GenPDF from '../components/GenPDF';
 
-export default function deleteUser() {
+export default function DeleteUser() {
 
   // Set useState constants
   const [transactionId, setTransactionId] = useState('');

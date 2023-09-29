@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import Input from '../components/Input';
 import GenPDF from '../components/GenPDF';
 
-export default function read() {
+export default function Read() {
 
   // Variables
   const [transactionId, setTransactionId] = useState('');

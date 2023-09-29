@@ -119,9 +119,9 @@ export default function Search() {
               </tr>
             </thead>
             <tbody>
-              {allSearchData.map((element) => {
+              {allSearchData.map((element, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td className='bg-white px-1 py-1 border-black border-2'>
                       {element.transactionId}
                     </td>
@@ -197,10 +197,10 @@ export default function Search() {
             </thead>
             <tbody>
               {
-                allSearchData.map((element) => {
+                allSearchData.map((element, index) => {
                   if (Object.values(element.payload).includes(searchTerm) || element.transactionId === searchTerm) {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td className='bg-white px-1 py-1 border-black border-2'>
                           {element.transactionId}
                         </td>

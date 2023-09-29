@@ -6,7 +6,7 @@ import Input from '../components/Input';
 import GenPDF from '../components/GenPDF';
 import Link from 'next/link';
 
-export default function create() {
+export default function Create() {
 
   // Variables
   const [formMedData, setFormMedData] = useState({
