@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 // Button hooks
-export default function buttonHooks() {
+export default function useButtonHooks() {
   
   const [createActive, setCreateActive] = useState(false);
   const [readActive, setReadActive] = useState(false);

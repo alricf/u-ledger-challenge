@@ -1,6 +1,6 @@
 // Imports
 import Link from "next/link";
-import buttonHooks from '../hooks/buttonHook';
+import useButtonHooks from '../hooks/useButtonHook';
 
 export default function NavBar({ readOnly }) {
   
@@ -42,7 +42,7 @@ export default function NavBar({ readOnly }) {
   }
   
   // Uses customhook to highlight selected page
-  const { createActive, readActive, updateActive, deleteActive, searchActive, readPatientActive } = buttonHooks();
+  const { createActive, readActive, updateActive, deleteActive, searchActive, readPatientActive } = useButtonHooks();
 
   // Template
   return (
