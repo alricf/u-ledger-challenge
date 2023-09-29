@@ -1,4 +1,6 @@
 export default function Input({ name, type, value, onChange, text, className, max }) {
+
+  // Template
   return (
     <>
       <input
